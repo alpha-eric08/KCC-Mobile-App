@@ -1,0 +1,58 @@
+import { Event } from "@/types";
+
+export const events: Event[] = [
+  {
+    id: "1",
+    title: "Sunday Worship Service",
+    description: "Join us for our weekly worship service with praise, prayer, and a message from Pastor Michael on 'Finding Peace in Troubled Times'.",
+    date: "2023-10-22",
+    time: "10:00 AM - 12:00 PM",
+    location: "Main Sanctuary",
+    imageUrl: "https://images.unsplash.com/photo-1507692049790-de58290a4334?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+  },
+  {
+    id: "2",
+    title: "Annual Church Picnic",
+    description: "A time of fellowship, food, and fun for the whole family. Activities include games, music, and a special children's program.",
+    date: "2023-10-21",
+    time: "11:00 AM - 3:00 PM",
+    location: "Central Park",
+    imageUrl: "https://images.unsplash.com/photo-1529543544282-ea669407fca3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+  },
+  {
+    id: "3",
+    title: "Bible Study: Book of Romans",
+    description: "An in-depth study of the Book of Romans led by Pastor John. This week we'll be covering chapters 5-6.",
+    date: "2023-10-25",
+    time: "7:00 PM - 8:30 PM",
+    location: "Fellowship Hall",
+    imageUrl: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+  },
+  {
+    id: "4",
+    title: "Youth Group Meeting",
+    description: "Weekly gathering for teens in grades 7-12. This week's topic: 'Friendship and Faith'.",
+    date: "2023-10-27",
+    time: "6:30 PM - 8:30 PM",
+    location: "Youth Center",
+    imageUrl: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80",
+  },
+  {
+    id: "5",
+    title: "Prayer Breakfast",
+    description: "Join us for breakfast and a time of prayer for our church, community, and world.",
+    date: "2023-10-28",
+    time: "8:00 AM - 9:30 AM",
+    location: "Church Cafeteria",
+    imageUrl: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+  },
+  {
+    id: "6",
+    title: "Choir Practice",
+    description: "Weekly rehearsal for the church choir. We're preparing for the upcoming Christmas cantata.",
+    date: "2023-10-26",
+    time: "6:00 PM - 7:30 PM",
+    location: "Choir Room",
+    imageUrl: "https://images.unsplash.com/photo-1528642474498-1af0c17fd8c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80",
+  },
+];

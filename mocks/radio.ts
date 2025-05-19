@@ -1,0 +1,42 @@
+export const radioPrograms = [
+    {
+      id: "1",
+      title: "Morning Devotional",
+      host: "Pastor Michael Johnson",
+      time: "6:00 AM - 7:30 AM",
+      description: "Start your day with inspiring devotionals, prayer, and worship music to set a positive tone for the day ahead.",
+      imageUrl: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+    },
+    {
+      id: "2",
+      title: "Bible Study Hour",
+      host: "Dr. Sarah Williams",
+      time: "9:00 AM - 10:30 AM",
+      description: "An in-depth study of Scripture with Dr. Sarah Williams, exploring the context, meaning, and application of God's Word.",
+      imageUrl: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+    },
+    {
+      id: "3",
+      title: "Praise & Worship",
+      host: "Worship Team",
+      time: "12:00 PM - 1:30 PM",
+      description: "A selection of contemporary and traditional worship music to lift your spirit during the midday break.",
+      imageUrl: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+    },
+    {
+      id: "4",
+      title: "Family Matters",
+      host: "Pastor John & Lisa Davis",
+      time: "3:00 PM - 4:30 PM",
+      description: "Practical advice and biblical wisdom for building strong, healthy families in today's challenging world.",
+      imageUrl: "https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+    },
+    {
+      id: "5",
+      title: "Evening Reflection",
+      host: "Pastor Michael Johnson",
+      time: "7:00 PM - 8:30 PM",
+      description: "End your day with peaceful reflection, prayer, and gentle worship music to prepare your heart for rest.",
+      imageUrl: "https://images.unsplash.com/photo-1507692049790-de58290a4334?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+    },
+  ];
