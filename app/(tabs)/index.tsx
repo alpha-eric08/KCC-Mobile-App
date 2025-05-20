@@ -1,8 +1,17 @@
-import React from "react";
-import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity, FlatList } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
 import { useRouter } from "expo-router";
 import { Calendar, Video, ArrowRight, Bell, MapPin } from "lucide-react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { ImageBackground } from "react-native";
 
 import { theme, colors } from "@/constants/colors";
 import { announcements } from "@/mocks/announcements";
@@ -11,18 +20,23 @@ import { events } from "@/mocks/events";
 import { Announcement } from "@/types";
 import { APP_NAME, CHURCH_LOCATION } from "@/constants/config";
 
+const images = [
+  require("@/assets/images/dad.jpg"),
+  require("@/assets/images/dadd.jpg"),
+  require("@/assets/images/daddy2.jpg"),
+];
 
 export default function HomeScreen() {
   const router = useRouter();
-  
+
   const featuredSermon = sermons[0];
   const upcomingEvents = events.slice(0, 3);
   const latestAnnouncements = announcements.slice(0, 3);
 
   const renderAnnouncementItem = ({ item }: { item: Announcement }) => (
-    <TouchableOpacity 
+    <TouchableOpacity
       style={styles.announcementCard}
-      onPress={() => router.push(`/announcement/${item.id}:any`)}
+      onPress={() => router.push('/announcements')}
     >
       {item.important && (
         <View style={styles.importantBadge}>
@@ -38,57 +52,53 @@ export default function HomeScreen() {
     </TouchableOpacity>
   );
 
-  const renderEventItem = ({ item }: { item: Event }) => (
-    <TouchableOpacity 
-      style={styles.eventItem}
-      onPress={() => router.push(`/event/${item.id}:any`)}
-    >
-      <Image source={{ uri: item.imageUrl }} style={styles.eventImage} />
-      <View style={styles.eventInfo}>
-        <Text style={styles.eventTitle} numberOfLines={1}>{item.title}</Text>
-        <View style={styles.eventMeta}>
-          <Calendar size={14} color={theme.secondaryText} />
-          <Text style={styles.eventDate}>{item.date}</Text>
-        </View>
-      </View>
-    </TouchableOpacity>
-  );
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 5000); // 5 seconds
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
 
   return (
-    <ScrollView 
-      style={styles.container}
-      showsVerticalScrollIndicator={false}
-    >
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       {/* Welcome Banner */}
-      <LinearGradient
-        colors={[colors.primary, '#0055FF']}
-        style={styles.welcomeBanner}
+      <ImageBackground
+        source={images[currentIndex]}
+        style={styles.imageBackground}
+        imageStyle={styles.imageStyle}
       >
-        <Text style={styles.welcomeText}>Welcome to</Text>
-        <Text style={styles.churchName}>{APP_NAME}</Text>
-        <View style={styles.locationContainer}>
-          <MapPin size={16} color={colors.gray} />
-          <Text style={styles.locationText}>{CHURCH_LOCATION.name}</Text>
-        </View>
-      </LinearGradient>
+        <LinearGradient
+          colors={["rgba(0,0,0,0.4)", "rgba(0,85,255,0.6)"]}
+          style={styles.overlay}
+        >
+          <Text style={styles.welcomeText}>Welcome to</Text>
+          <Text style={styles.churchName}>{APP_NAME}</Text>
+          <View style={styles.locationContainer}>
+            <MapPin size={16} color={colors.gray} />
+            <Text style={styles.locationText}>{CHURCH_LOCATION.name}</Text>
+          </View>
+        </LinearGradient>
+      </ImageBackground>
 
       {/* Announcements */}
       <View style={styles.section}>
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Announcements</Text>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.seeAllButton}
-            onPress={() => router.push('/announcements')}
+            onPress={() => router.push("/announcements")}
           >
             <Text style={styles.seeAllText}>See All</Text>
             <ArrowRight size={16} color={theme.primaryText} />
           </TouchableOpacity>
         </View>
-        
+
         <FlatList
           data={latestAnnouncements}
           renderItem={renderAnnouncementItem}
-          keyExtractor={(item) => item.id}
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.announcementsContainer}
@@ -100,15 +110,15 @@ export default function HomeScreen() {
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Featured Sermon</Text>
         </View>
-        
-        <TouchableOpacity 
+
+        <TouchableOpacity
           style={styles.featuredSermonCard}
           onPress={() => router.push(`/sermon/${featuredSermon.id}`)}
         >
           <View style={styles.thumbnailContainer}>
-            <Image 
-              source={{ uri: featuredSermon.thumbnailUrl }} 
-              style={styles.sermonThumbnail} 
+            <Image
+              source={{ uri: featuredSermon.thumbnailUrl }}
+              style={styles.sermonThumbnail}
             />
             <View style={styles.playButton}>
               <Video size={24} color={colors.white} fill={colors.white} />
@@ -126,25 +136,30 @@ export default function HomeScreen() {
       <View style={styles.section}>
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Upcoming Events</Text>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.seeAllButton}
-            onPress={() => router.push('/events')}
+            onPress={() => router.push("/events")}
           >
             <Text style={styles.seeAllText}>See All</Text>
             <ArrowRight size={16} color={theme.primaryText} />
           </TouchableOpacity>
         </View>
-        
+
         <View style={styles.eventsContainer}>
           {upcomingEvents.map((event) => (
-            <TouchableOpacity 
+            <TouchableOpacity
               key={event.id}
               style={styles.eventItem}
-              onPress={() => router.push(`/event/${event.id}`)}
+              onPress={() => router.push("/events")}
             >
-              <Image source={{ uri: event.imageUrl }} style={styles.eventImage} />
+              <Image
+                source={{ uri: event.imageUrl }}
+                style={styles.eventImage}
+              />
               <View style={styles.eventInfo}>
-                <Text style={styles.eventTitle} numberOfLines={1}>{event.title}</Text>
+                <Text style={styles.eventTitle} numberOfLines={1}>
+                  {event.title}
+                </Text>
                 <View style={styles.eventMeta}>
                   <Calendar size={14} color={theme.secondaryText} />
                   <Text style={styles.eventDate}>{event.date}</Text>
@@ -157,34 +172,36 @@ export default function HomeScreen() {
 
       {/* Quick Links */}
       <View style={styles.quickLinksContainer}>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.quickLink}
-          onPress={() => router.push('/give')}
+          onPress={() => router.push("/give")}
         >
           <Text style={styles.quickLinkText}>Give</Text>
         </TouchableOpacity>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.quickLink}
-          onPress={() => router.push('/prayer')}
+          onPress={() => router.push("/prayer")}
         >
           <Text style={styles.quickLinkText}>Prayer</Text>
         </TouchableOpacity>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.quickLink}
-          onPress={() => router.push('/video-feed')}
+          onPress={() => router.push("/video-feed")}
         >
           <Text style={styles.quickLinkText}>Videos</Text>
         </TouchableOpacity>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.quickLink}
-          onPress={() => router.push('/map')}
+          onPress={() => router.push("/map")}
         >
           <Text style={styles.quickLinkText}>Map</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.footer}>
-        <Text style={styles.footerText}>© 2023 {APP_NAME}. All rights reserved.</Text>
+        <Text style={styles.footerText}>
+          © 2025 {APP_NAME}. All rights reserved.
+        </Text>
       </View>
     </ScrollView>
   );
@@ -195,10 +212,23 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.background,
   },
-  welcomeBanner: {
-    padding: 24,
+
+  imageBackground: {
+    width: "100%",
+    height: 220,
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
+    overflow: "hidden",
+  },
+  imageStyle: {
+    borderBottomLeftRadius: 24,
+    borderBottomRightRadius: 24,
+    resizeMode: "cover",
+  },
+  overlay: {
+    flex: 1,
+    padding: 24,
+    justifyContent: "center",
   },
   welcomeText: {
     fontSize: 16,
@@ -221,6 +251,7 @@ const styles = StyleSheet.create({
     color: colors.white,
     marginLeft: 6,
   },
+
   section: {
     marginTop: 24,
     paddingHorizontal: 16,

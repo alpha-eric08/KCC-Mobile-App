@@ -4,7 +4,7 @@ export const sermons: Sermon[] = [
   {
     id: "1",
     title: "Finding Peace in Troubled Times",
-    preacher: "Pastor Michael Johnson",
+    preacher: "Pro T.K Samuel",
     date: "2023-10-15",
     duration: "45:22",
     thumbnailUrl: "https://images.unsplash.com/photo-1507692049790-de58290a4334?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",

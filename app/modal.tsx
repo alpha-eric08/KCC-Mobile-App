@@ -4,12 +4,14 @@ import { useRouter } from "expo-router";
 import { 
   User, Settings, Heart, DollarSign, MapPin, 
   Bell, Moon, LogOut, ChevronRight, Radio, 
-  BookOpen, MessageSquare, Calendar, Video
+  BookOpen, MessageSquare, Calendar, Video,
+  AlignHorizontalJustifyCenterIcon
 } from "lucide-react-native";
 
 import { theme, colors } from "@/constants/colors";
 import { APP_NAME } from "@/constants/config";
 import { useUserStore } from "@/store/user-store";
+import AnnouncementScreen from "./Announcements";
 
 export default function ModalScreen() {
   const router = useRouter();
@@ -55,6 +57,11 @@ export default function ModalScreen() {
       title: "Live Stream",
       icon: <Video size={22} color={theme.primaryText} />,
       onPress: () => router.push("/live"),
+    },
+       {
+      title: "Announcements",
+      icon: <AlignHorizontalJustifyCenterIcon size={22} color={theme.primaryText} />,
+      onPress: () => router.push("/announcements"),
     },
     {
       title: "Locations",

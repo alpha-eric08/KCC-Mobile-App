@@ -4,10 +4,13 @@ import { Play, Clock, Heart, Eye } from "lucide-react-native";
 
 import { theme, colors } from "@/constants/colors";
 import { sermons } from "@/mocks/sermons";
+import { router } from "expo-router";
 
 export default function SermonsScreen() {
   const renderSermonItem = ({ item }) => (
-    <TouchableOpacity style={styles.sermonCard}>
+    <TouchableOpacity style={styles.sermonCard}
+     onPress={() => router.push(`/sermon/${item.id}`)}
+    >
       <View style={styles.thumbnailContainer}>
         <Image 
           source={{ uri: item.thumbnailUrl }} 
